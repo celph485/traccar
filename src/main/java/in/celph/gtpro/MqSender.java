@@ -1,5 +1,7 @@
 package in.celph.gtpro;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.activemq.artemis.jms.client.ActiveMQConnectionFactory;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -47,7 +49,7 @@ public class MqSender {
             return false;
         }
 
-        final String data = GpsEvent.getInstance(imei, position).getJsonFormatData();
+        final String data = getJsonFormatData(GpsEvent.getInstance(imei, position));
 
         if(StringUtils.isEmpty(data)){
             LOGGER.warn("Won't be able to send data to MQ for device id: {}, please check logs. ",position.getDeviceId());
@@ -80,6 +82,16 @@ public class MqSender {
         }catch (Exception e){
             LOGGER.error("Error while sending position to mq", e);
             return false;
+        }
+    }
+
+    private String getJsonFormatData(final GpsEvent gpsEvent){
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            return mapper.writeValueAsString(gpsEvent);
+        } catch (JsonProcessingException e) {
+            LOGGER.error("Unable to create json string ", e);
+            return StringUtils.EMPTY;
         }
     }
 }

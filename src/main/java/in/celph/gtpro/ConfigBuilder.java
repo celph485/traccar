@@ -52,7 +52,7 @@ final class ConfigBuilder {
     private Map<Long, String> populateDeviceMap() throws IOException {
         LOGGER.info("Populating device-imei mapping");
         Map<Long, String> map = new HashMap<>();
-        Properties prop = getProperties(configFileLoc);
+        Properties prop = getProperties(mappingFileLoc);
         for(String key: prop.stringPropertyNames()){
             final String val = prop.getProperty(key);
             map.put(Long.valueOf(key), val);

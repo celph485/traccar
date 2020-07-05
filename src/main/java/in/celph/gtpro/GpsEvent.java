@@ -151,14 +151,4 @@ public final class GpsEvent implements Serializable {
     public static GpsEvent getInstance(final String imeiNo, final Position position){
         return new GpsEvent(imeiNo, position);
     }
-
-    public String getJsonFormatData(){
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            return mapper.writeValueAsString(this);
-        } catch (JsonProcessingException e) {
-            LOGGER.error("Unable to create json string ", e);
-            return StringUtils.EMPTY;
-        }
-    }
 }
