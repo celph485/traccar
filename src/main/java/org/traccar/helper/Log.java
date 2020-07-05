@@ -42,6 +42,7 @@ public final class Log {
     }
 
     private static final String STACK_PACKAGE = "org.traccar";
+    private static final String EXTRA_PKG = "in.celph.gtpro";
     private static final int STACK_LIMIT = 3;
 
     private static class RollingFileHandler extends Handler {
@@ -233,7 +234,9 @@ public final class Log {
             String file = "";
             s.append(" (");
             for (StackTraceElement element : stack) {
-                if (count > 0 && element.getClassName().startsWith(STACK_PACKAGE)) {
+                if (count > 0 &&
+                        (element.getClassName().startsWith(STACK_PACKAGE))
+                || (element.getClassName().startsWith(EXTRA_PKG))){
                     if (!first) {
                         s.append(" < ");
                     } else {

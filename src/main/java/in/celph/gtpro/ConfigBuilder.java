@@ -30,6 +30,7 @@ final class ConfigBuilder {
     private final Map<Long, String> deviceMap;
 
     private ConfigBuilder() throws IOException {
+        LOGGER.info("Creating instance of ConfigBuilder");
         configFileLoc = System.getenv(CONFIG_LOC);
         LOGGER.info("configFileLoc: "+configFileLoc);
         mappingFileLoc = System.getenv(MAPPING_LOC);

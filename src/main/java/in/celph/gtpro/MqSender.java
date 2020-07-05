@@ -15,6 +15,7 @@ public class MqSender {
     private Map<Long, String> deviceMap;
     private boolean canSend;
     private MqSender(){
+        LOGGER.info("Creating instance of MqSender");
         try {
             ConfigBuilder configBuilder = ConfigBuilder.getInstance();
             configMap = configBuilder.getConfigMap();

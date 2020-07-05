@@ -354,7 +354,13 @@ public class DataManager {
                 .setDate("now", new Date())
                 .setObject(position)
                 .executeUpdate();
-        CompletableFuture.supplyAsync(() -> MqSender.getInstance().send(position));
+        try{
+            //CompletableFuture.supplyAsync(() -> MqSender.getInstance().send(position));
+            LOGGER.info("Attempting to send data to MQ");
+            MqSender.getInstance().send(position);
+        }catch (Exception e){
+            LOGGER.error("Error while sending data to MQ", e);
+        }
     }
 
     public Collection<Position> getLatestPositions() throws SQLException {
