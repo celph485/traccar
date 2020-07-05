@@ -25,10 +25,12 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.CompletableFuture;
 
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import in.celph.gtpro.MqSender;
 import liquibase.Contexts;
 import liquibase.Liquibase;
 import liquibase.database.Database;
@@ -352,6 +354,7 @@ public class DataManager {
                 .setDate("now", new Date())
                 .setObject(position)
                 .executeUpdate();
+        CompletableFuture.supplyAsync(() -> MqSender.getInstance().send(position));
     }
 
     public Collection<Position> getLatestPositions() throws SQLException {
