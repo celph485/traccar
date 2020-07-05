@@ -98,6 +98,8 @@ prepare () {
   cp -r ../traccar-web/web/* out/web
   cp default.xml out/conf
   cp traccar.xml out/conf
+  cp config.properties out/conf
+  cp mapping.properties out/conf
 
   if [ $PLATFORM = "all" -o $PLATFORM = "windows-64" ]; then
 	innoextract i*setup-*.exe >/dev/null
