@@ -16,8 +16,6 @@ final class ConfigBuilder {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ConfigBuilder.class);
 
-    private static final String CONFIG_LOC = "CONFIG_LOC";
-    private static final String MAPPING_LOC = "MAPPING_LOC";
     static final String MQ_HOST = "mq-host";
     static final String MQ_PORT = "mq-port";
     static final String MQ_USER = "mq-user";
@@ -31,9 +29,9 @@ final class ConfigBuilder {
 
     private ConfigBuilder() throws IOException {
         LOGGER.info("Creating instance of ConfigBuilder");
-        configFileLoc = System.getenv(CONFIG_LOC);
+        configFileLoc = "/opt/traccar/conf/config.properties";
         LOGGER.info("configFileLoc: "+configFileLoc);
-        mappingFileLoc = System.getenv(MAPPING_LOC);
+        mappingFileLoc = "/opt/traccar/conf/mapping.properties";
         LOGGER.info("mappingFileLoc: "+mappingFileLoc);
         this.configMap = populateConfigMap();
         this.deviceMap = populateDeviceMap();
