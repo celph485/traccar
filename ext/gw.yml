@@ -1,0 +1,12 @@
+name: gw
+dependencies:
+  - python=3.7
+  - numpy
+  - pandas
+  - mysql-connector-python
+  - pip
+  - pip:
+    - stomp.py
+    - requests
+  
+  
