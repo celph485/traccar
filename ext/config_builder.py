@@ -3,8 +3,9 @@ import os
 import platform
 from pathlib import Path
 
-CONFIG_PROP_LOC = 'D:\\app\\g\\traccar\\setup\\config.properties'
-MAPPING_PROP_LOC = 'D:\\app\\g\\traccar\\setup\\mapping.properties'
+CONFIG_PROP_LOC = '/home/anandkumar/apps/work/traccar/setup/config.properties'
+MAPPING_PROP_LOC = '/home/anandkumar/apps/work/traccar/setup/mapping.properties'
+
 __dir_sep = os.path.sep
 __usr_home = str(Path.home())
 __app_name = 'external'
@@ -31,11 +32,8 @@ def __get_default_config():
         'SYS_VERSION': platform.version(),
         'DIR_SEP': __dir_sep,
         'USER_DIR': __usr_home,
-        'LOG_DIR': "{}{}{}{}logs".format(__usr_home,
-                                         __dir_sep,
-                                         __app_name,
-                                         __dir_sep),
-        'CURR_LOG_LEVEL': 10,
+        'LOG_DIR': f"{__usr_home}{__dir_sep}{__app_name}{__dir_sep}logs"
+        'CURR_LOG_LEVEL': logging.DEBUG,
         'DEF_DATE_FORMAT': '%Y_%m_%d',
         'DEF_DATETIME_FORMAT': '%Y-%m-%d %H:%M:%S',
         'MAX_LOG_FILE_SIZE_IN_BYTES': 20_000_000,

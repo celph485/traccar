@@ -5,8 +5,9 @@
 		}
 	],
 	"settings": {
+		"python.pythonPath": "/home/anandkumar/miniconda3/envs/gw/bin/python",
 		"python.linting.flake8Args": [
 			"--max-line-length=95"
-		],		
+		],
 	}
 }
