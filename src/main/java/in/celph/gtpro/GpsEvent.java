@@ -140,9 +140,9 @@ public final class GpsEvent implements Serializable {
 
     private String formatGpsTime(final String timeInSeconds){
         final String expectedFormat = "yyyy-MM-dd HH:mm:ss";
-        LOGGER.debug("formatGpsTime | timeInSeconds: {}, expectedFormat: {}",timeInSeconds, expectedFormat);
+        LOGGER.info("formatGpsTime | timeInSeconds: {}, expectedFormat: {}",timeInSeconds, expectedFormat);
         Long timeInMills = Long.valueOf(timeInSeconds) * 1000;
-        LOGGER.debug("formatGpsTime | timeInMills: {}, expectedFormat: {}",timeInMills, expectedFormat);
+        LOGGER.info("formatGpsTime | timeInMills: {}, expectedFormat: {}",timeInMills, expectedFormat);
         Date date = new Date(timeInMills);
         SimpleDateFormat formatter = new SimpleDateFormat(expectedFormat);
         return formatter.format(date);
