@@ -1,18 +1,13 @@
 package in.celph.gtpro;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import org.apache.commons.collections4.MapUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.traccar.model.Position;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Map;
 import java.util.Objects;
 
@@ -52,7 +47,7 @@ public final class GpsEvent implements Serializable {
         this.analogPort2 = "0";
         this.angle = "0";
         this.satellite = "0";
-        this.time = formatGpsTime(String.valueOf(position.getFixTime().getTime()));
+        this.time = String.valueOf(position.getFixTime().getTime());
         this.batteryVoltage = getBatteryValue(position.getAttributes());;
         this.gpsValidity = "A";
     }
@@ -136,16 +131,6 @@ public final class GpsEvent implements Serializable {
         }
 
         return String.valueOf(map.get("battery"));
-    }
-
-    private String formatGpsTime(final String timeInSeconds){
-        final String expectedFormat = "yyyy-MM-dd HH:mm:ss";
-        LOGGER.info("formatGpsTime | timeInSeconds: {}, expectedFormat: {}",timeInSeconds, expectedFormat);
-        Long timeInMills = Long.valueOf(timeInSeconds) * 1000;
-        LOGGER.info("formatGpsTime | timeInMills: {}, expectedFormat: {}",timeInMills, expectedFormat);
-        Date date = new Date(timeInMills);
-        SimpleDateFormat formatter = new SimpleDateFormat(expectedFormat);
-        return formatter.format(date);
     }
 
     public static GpsEvent getInstance(final String imeiNo, final Position position){

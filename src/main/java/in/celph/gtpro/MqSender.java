@@ -45,7 +45,7 @@ public class MqSender {
         final String imei = deviceMap.get(position.getDeviceId());
 
         if(StringUtils.isEmpty(imei)){
-            LOGGER.warn("Won't send data to MQ for device id "+position.getDeviceId());
+            LOGGER.warn("Device id "+position.getDeviceId() + " is not whitelisted for MQ");
             return false;
         }
 
